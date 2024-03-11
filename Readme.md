@@ -1,4 +1,4 @@
-﻿####Objetive:
+﻿#### Objetive:
 
 Obtain N **_trading strategies_** with technical patterns with **Random Forest** python-sklearn, one strategy per action, be able to generate N strategies for each action.
 
@@ -57,7 +57,7 @@ To collect the complete simulation history of the generated strategy, the files 
 `S_04_rf_eval_Realtime.py` evaluate in real time and in the future, the operations in today's are recorded in `d_result/win_loss_today_2024_03_11.csv`. It is implementable with automatic traders API (for alpaca deGiro, etc. consult the author) there are certain alerts in <https://twitter.com/Whale__Hunters> .
 
 
-#####Example pine script
+##### Example pine script
 Will return a number between 0 and 2, with **2 being most safe to buy** and **0 to be most safe to sell**:
 ```java
 //@version=5
@@ -141,6 +141,7 @@ Randon Forest visualization, final sheet is labeled: _buy, none, sell_
 
 
 Why has Randon Forest made a decision?
+
 ![](img/Aspose.Words.cdac2baa-0579-4770-926f-94fa4c27ba11.003.jpeg)
 
 
