@@ -1,0 +1,1 @@
+{'Perc': 0.355, 'Total': 727, 'Bad': 469, 'Good': 258, 'Perc_pos': 0.043, 'Total_pos': 468, 'Bad_pos': 448, 'Good_pos': 20, 'ticker': 'AAPL', 'id_count': 225}
