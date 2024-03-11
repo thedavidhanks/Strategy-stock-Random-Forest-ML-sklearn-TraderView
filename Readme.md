@@ -152,7 +152,7 @@ r = export_text(rf_model.estimators_[0], feature_names=list(rf_model.feature_nam
 exported_text, sas_text, py_text, code_TVW= export_code(eval_model, 0, list(rf_model.feature_names_in_))
  ```
 
-#####Notes:
+##### Notes:
 
 - Be careful with the risk of **overfitting**, 4 or 5 branches at most are used `"max_depth": [4,5] `, the smallest possible are recommended.
 - For **more technical indicators** in python you can find 200 here<https://github.com/Leci37/stocks-prediction-Machine-learning-RealTime-TensorFlow/tree/master/technical_indicators> 
