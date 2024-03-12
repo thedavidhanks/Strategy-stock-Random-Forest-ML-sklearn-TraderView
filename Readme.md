@@ -32,7 +32,8 @@ By default it works with these two stocks `stocks_list = ["AAPL", "SHIP"] `
 
 The RamdonForest Model will **return** a number between 0 and 2, with **2** being most secure buy and **0** being sell.
 Telegram GROUP: https://t.me/+3oG6U_hp93I2M2Ix 
-####Execution:
+
+#### Execution:
 
 Install requirements
 
