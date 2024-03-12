@@ -158,4 +158,6 @@ exported_text, sas_text, py_text, code_TVW= export_code(eval_model, 0, list(rf_m
 - For **more technical indicators** in python you can find 200 here <https://github.com/Leci37/stocks-prediction-Machine-learning-RealTime-TensorFlow/tree/master/technical_indicators> 
 - If you want to obtain the RF code in _**sas, TraderView**_ and _**python**_ see the function `exported_text, sas_text, py_text, code_TVW = export_code(rf_mod.estimators_[0], 0, list(rf_mod.feature_names_in_))`
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/leci37)
+
 
