@@ -1,4 +1,6 @@
-_**SEE ALSO**_ [Machine Learning Deep Detection](https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime)
+<img src="https://raw.githubusercontent.com/Leci37/Strategy-stock-Random-Forest-ML-sklearn-TraderView/main/img/give_a_start.jpg" alt="give_a_start.jpg" width="80" />   _**SEE ALSO**_ [Machine Learning Deep Detection](https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime)
+
+
 
  #### Objetive:
 
