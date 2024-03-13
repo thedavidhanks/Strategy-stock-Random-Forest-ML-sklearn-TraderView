@@ -27,11 +27,12 @@ At the code level:
 - Record of SL operations and updates. Example AAPL [d_result/stra_simulator/AAPL.csv](d_result/stra_simulator/AAPL.csv)
 - Evaluate the quality of the strategy [d_result/history/AAPL.csv](d_result/history/AAPL.csv) with python
 - Calculate the associated technical patterns (only the konkorde pattern `get_konkorde_params_GOOD(` will be used in this version)
+- **Ground True** (Y_target the variable to predict), in this case **where to buy** and where to sell, simple, the candlesticks where there are gains greater than 1% (defined in the variable `PER_VALEU_CHANGE = 1`). You can see it in the method `get_GT_day_candle(df_kon)`
 
 
 By default it works with these two stocks `stocks_list = ["AAPL", "SHIP"] `
 
-The RamdonForest Model will **return** a number between 0 and 2, with **2** being most secure buy and **0** being sell.
+Important: The RamdonForest Model will **return** a number between 0 and 2, with **2** being most secure buy and **0** being sell.
 Telegram GROUP: https://t.me/+3oG6U_hp93I2M2Ix 
 
 #### Execution:
