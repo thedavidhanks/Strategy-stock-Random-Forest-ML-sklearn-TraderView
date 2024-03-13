@@ -27,7 +27,7 @@ At the code level:
 - Record of SL operations and updates. Example AAPL [d_result/stra_simulator/AAPL.csv](d_result/stra_simulator/AAPL.csv)
 - Evaluate the quality of the strategy [d_result/history/AAPL.csv](d_result/history/AAPL.csv) with python
 - Calculate the associated technical patterns (only the konkorde pattern `get_konkorde_params_GOOD(` will be used in this version)
-- **Ground True** (Y_target the variable to predict), in this case **where to buy** and where to sell, simple, the candlesticks where there are gains greater than 1% (defined in the variable `PER_VALEU_CHANGE = 1`). You can see it in the method `get_GT_day_candle(df_kon)`
+- **Ground True** (Y_target the variable to predict), in this case **where to buy** and where to sell, simple, the candlesticks where there are gains greater than 1% (defined in the variable `PER_VALEU_CHANGE = 1`). You can see it in the method `get_GT_day_candle(df_kon)` and extra `rolling_buy_sell_val_BUY(df_ind)`
 
 
 By default it works with these two stocks `stocks_list = ["AAPL", "SHIP"] `
