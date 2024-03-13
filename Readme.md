@@ -1,4 +1,6 @@
-﻿#### Objetive:
+_**SEE ALSO**_ [Machine Learning Deep Detection]([https://github.com/Leci37/Strategy-stock-Random-Forest-ML-sklearn-TraderView/tree/main](https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime))
+
+ #### Objetive:
 
 Obtain N **_trading strategies_** with technical patterns with **Random Forest** python-sklearn, one strategy per action, be able to generate N strategies for each action.
 Only candles with **_1 day_** format
