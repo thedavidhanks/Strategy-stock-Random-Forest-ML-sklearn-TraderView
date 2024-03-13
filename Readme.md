@@ -1,4 +1,4 @@
-_**SEE ALSO**_ [Machine Learning Deep Detection]([https://github.com/Leci37/Strategy-stock-Random-Forest-ML-sklearn-TraderView/tree/main](https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime))
+_**SEE ALSO**_ [Machine Learning Deep Detection](https://github.com/Leci37/TensorFlow-stocks-prediction-Machine-learning-RealTime)
 
  #### Objetive:
 
