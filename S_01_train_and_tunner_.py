@@ -1,7 +1,6 @@
 # https://es.tradingview.com/script/lLFiT3av/
 # Blai5 Koncorde by manboto copy
 import numpy as np
-import talib
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 import dtreeviz
 import itertools

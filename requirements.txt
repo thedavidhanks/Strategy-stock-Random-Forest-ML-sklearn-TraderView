@@ -1,0 +1,9 @@
+dtreeviz
+lxml
+matplotlib
+numpy
+pandas
+pandas_ta
+requests
+scikit-learn
+yfinance

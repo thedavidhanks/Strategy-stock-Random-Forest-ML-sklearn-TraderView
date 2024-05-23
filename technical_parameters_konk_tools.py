@@ -1,7 +1,6 @@
 import re
 
 import numpy as np
-import talib
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 import dtreeviz
 print(dtreeviz.__version__)
