@@ -39,9 +39,13 @@ By default it works with these two stocks `stocks_list = ["AAPL", "SHIP"] `
 Important: The RamdonForest Model will **return** a number between 0 and 2, with **2** being most secure buy and **0** being sell.
 Telegram GROUP: https://t.me/+3oG6U_hp93I2M2Ix 
 
-#### Execution:
+#### Install:
 
-Install requirements
+1. Setup a virtual environment with Python 3.12
+2. Install requirements.txt
+	pip -r requirements.txt
+
+#### Execution:
 
 `S_00_dowload_data_API_yahoo.py` Download the historical values of OLHLV with the Yahoo API (you can use others such as alpaca but since you work with daily values it is not necessary)
 

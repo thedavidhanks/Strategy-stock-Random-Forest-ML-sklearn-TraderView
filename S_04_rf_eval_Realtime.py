@@ -8,6 +8,7 @@ from  Strategy_TW_class import Strategy,OPEN,CLOSE,LONG,SHORT
 import re
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from UtilsL import get_yahoo_api_data
 
 import _KEYS_DICT
 
@@ -55,19 +56,6 @@ TARGET_TIME = '1Day'#'2024-02-23T23:59:59Z'
 INTERVAL_WEBULL = "m3"  # ""d1" #y1 => diario y5=> semanal  m3=> diario     d5 => 5 minutos     d1 => 1 minuto
 
 
-def get_yahoo_api_data(period="max", interval="1d"):
-    # df_webull, __ = get_df_webull_realTime(INTERVAL_WEBULL, TICKER, None)
-    df_yh = yf.download(tickers=TICKER, period="max", interval="1d", prepos=False)
-    # df_yh.index = df_yh.index.tz_convert(None)  # location zone adapt to current zone
-    df_yh.reset_index(inplace=True)
-    df_yh = df_yh.rename(columns={'Datetime': 'Date'})
-    df_yh = df_yh.drop(columns=['Adj Close'])
-    df_yh['Date'] = df_yh['Date'] + pd.Timedelta(hours=5)
-    df_yh['Date'] = df_yh['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_yh = df_yh.sort_values('Date', ascending=False).round(2)
-    df_yh = df_yh[df_yh['Date'] > "2022:01:01"]
-    df_yh['Date'] = pd.to_datetime(df_yh['Date'])
-    return df_yh
 def register_MULTI_in_zTelegram_Registers(df_r, path): # = "d_result/Konk_buy_"+datetime.now().strftime("%Y_%m_%d")+".csv"
     if os.path.isfile(path):
         df_r.to_csv(path, sep="\t", mode='a', header=False)
@@ -116,7 +104,7 @@ for TICKER in stocks_list:
         continue
     path_read_csv = "d_price/yahoo/yahoo_" + TICKER + '_' + TARGET_TIME + "_.csv"
     df_alpa = pd.read_csv(path_read_csv, sep="\t")
-    df_yh = get_yahoo_api_data()
+    df_yh = get_yahoo_api_data(TICKER)
 
     df_yh['Date'] = pd.to_datetime(df_yh['Date']).dt.strftime('%Y-%m-%d %H:%M:%S')
     df_alpa['Date'] = pd.to_datetime(df_alpa['Date']).dt.strftime('%Y-%m-%d %H:%M:%S')

@@ -9,6 +9,8 @@ from UtilsL import bcolors
 
 from technical_parameters_konk_tools import *
 from technical_parameters_konk_tools_Prepro import *
+from UtilsL import get_yahoo_api_data
+
 DOLARS_TO_OPERA = 100
 
 list_files = glob.glob("d_price\pine_tree\model_info_*_.csv")
@@ -20,21 +22,6 @@ START_DATE = '2000-01-01T00:00:00Z'
 END_DATE =  datetime.today().strftime('%Y-%m-%dT%H:%M:%SZ')
 TARGET_TIME = '1Day'#'2024-02-23T23:59:59Z'
 INTERVAL_WEBULL = "m3"  # ""d1" #y1 => diario y5=> semanal  m3=> diario     d5 => 5 minutos     d1 => 1 minuto
-
-
-def get_yahoo_api_data(period="max", interval="1d"):
-    # df_webull, __ = get_df_webull_realTime(INTERVAL_WEBULL, TICKER, None)
-    df_yh = yf.download(tickers=TICKER, period="max", interval="1d", prepos=False)
-    # df_yh.index = df_yh.index.tz_convert(None)  # location zone adapt to current zone
-    df_yh.reset_index(inplace=True)
-    df_yh = df_yh.rename(columns={'Datetime': 'Date'})
-    df_yh = df_yh.drop(columns=['Adj Close'])
-    df_yh['Date'] = df_yh['Date'] + pd.Timedelta(hours=5)
-    df_yh['Date'] = df_yh['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_yh = df_yh.sort_values('Date', ascending=False).round(2)
-    df_yh = df_yh[df_yh['Date'] > "2022:01:01"]
-    df_yh['Date'] = pd.to_datetime(df_yh['Date'])
-    return df_yh
 
 def register_MULTI_in_zTelegram_Registers(df_r, path): # = "d_result/Konk_buy_"+datetime.now().strftime("%Y_%m_%d")+".csv"
     if os.path.isfile(path):
@@ -62,7 +49,7 @@ for TICKER in stocks_list:
 
     path_read_csv = "d_price/yahoo/yahoo_" + TICKER + '_' + TARGET_TIME + "_.csv"
     df_alpa = pd.read_csv(path_read_csv, sep="\t")
-    df_yh = get_yahoo_api_data()
+    df_yh = get_yahoo_api_data(TICKER)
 
     df_yh['Date'] = pd.to_datetime(df_yh['Date']).dt.strftime('%Y-%m-%d %H:%M:%S')
     df_alpa['Date'] = pd.to_datetime(df_alpa['Date']).dt.strftime('%Y-%m-%d %H:%M:%S')
@@ -78,9 +65,8 @@ for TICKER in stocks_list:
 
     print("Read csv Path: ", path_read_csv, " Shape: ", df_alpa.shape)
     _, df_kon_predict = preprocess_df_to_predict_with_konkorde_blaid(df_bl,path_read_csv,  TICKER, TARGET_TIME)
-    df_kon = df_kon_predict[rf_mod.feature_names_in_] # df_kon_predict[-5:][rf_mod.feature_names_in_]
-
-    df_kon['predict'] = np.reshape(rf_mod.predict(df_kon), (-1, 1))
+    df_kon = df_kon_predict[rf_mod.feature_names_in_].copy() # df_kon_predict[-5:][rf_mod.feature_names_in_]
+    df_kon.loc[:,'predict'] = np.reshape(rf_mod.predict(df_kon), (-1, 1))
     df_kon_predict['predict'] = df_kon['predict']
 
     df_feature_importances = pd.DataFrame({'Columns': rf_mod.feature_names_in_, 'Importance': [x.round(4) for x in rf_mod.feature_importances_]})
