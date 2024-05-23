@@ -1,8 +1,5 @@
-import re
-
 import numpy as np
 import dtreeviz
-print(dtreeviz.__version__)
 import matplotlib
 matplotlib.use('TKAgg')
 import pandas as pd
@@ -10,7 +7,7 @@ import pickle
 
 from technical_parameters_konk_tools import *
 
-
+print("dtreevis version: ",dtreeviz.__version__)
 ### PROCESAR PARA ENTRENAR
 def manage_dates_from_csv(df_bl):
     df_bl['Date'] = pd.to_datetime(df_bl['Date'])

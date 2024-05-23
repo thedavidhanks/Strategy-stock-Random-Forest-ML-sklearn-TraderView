@@ -1,9 +1,6 @@
 import re
 
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-import dtreeviz
-print(dtreeviz.__version__)
 from matplotlib import pyplot as plt
 import matplotlib
 matplotlib.use('TKAgg')
@@ -381,7 +378,7 @@ def get_percentage_exist_Regresion(y_test, prediction, per_level):
     # df_pos.loc[( df_eval['Prediction_aux'] ==  df_eval["y_test"] ), "is_same_sig"] = True
     # df_pos.loc[(df_pos["y_test"] > per_level) & (df_pos["Prediction"] > per_level), "is_same_sig"] = True
     df_r_pos = df_pos.groupby("is_same_sig").count()
-    df_r_pos['per'] = (df_r_pos['y_test'] / (df_r_pos['y_test'][0] + df_r_pos['y_test'][1])).round(3)
+    df_r_pos['per'] = (df_r_pos['y_test'] / (df_r_pos['y_test'].iloc[0] + df_r_pos['y_test'].iloc[1])).round(3)
     print( "POSITIVOS: ", df_r_pos)
     dict_r_pos = {"Perc_pos": df_r_pos['per'][True], "Total_pos": df_r_pos['y_test'].sum(), "Bad_pos": df_r_pos['y_test'][False],
                   "Good_pos": df_r_pos['y_test'][True]}
@@ -390,7 +387,7 @@ def get_percentage_exist_Regresion(y_test, prediction, per_level):
     # df_eval.loc[(df_eval["y_test"] < (per_level*-1)) & (df_eval["Prediction"] < (per_level*-1)), "is_same_sig"] = True
     # df_eval.loc[(df_eval["y_test"] > per_level) & (df_eval["Prediction"] > per_level), "is_same_sig"] = True
     df_r = df_eval.groupby("is_same_sig").count()
-    df_r['per'] = (df_r['y_test']  / (df_r['y_test'][0] + df_r['y_test'][1])).round(3)
+    df_r['per'] = (df_r['y_test']  / (df_r['y_test'].iloc[0] + df_r['y_test'].iloc[1])).round(3)
     print("MIXTOS: ", df_r)
     dict_r = {"Perc":df_r['per'][True],"Total":df_r['y_test'] .sum() , "Bad":df_r['y_test'][False], "Good":df_r['y_test'][True]  }
     return df_r, dict_r, dict_r_pos
