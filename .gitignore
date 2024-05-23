@@ -1,0 +1,6 @@
+*.pyc
+d_price/*.csv
+d_price/RF/*.rfmodel
+d_price/RF/*
+d_price/yahoo/*
+d_price/pine_tree/*
