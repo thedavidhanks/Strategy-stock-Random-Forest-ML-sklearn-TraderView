@@ -17,7 +17,7 @@ import pandas as pd
 
 from technical_parameters_konk_tools import *
 
-print(dtreeviz.__version__)
+print("dtreevis version: ",dtreeviz.__version__)
 from matplotlib import pyplot as plt
 import matplotlib
 matplotlib.use('TKAgg')

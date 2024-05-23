@@ -5,6 +5,7 @@ import numpy as np
 import re
 from lxml.etree import tostring
 import math
+import yfinance as yf
 
 
 class bcolors:
@@ -385,3 +386,17 @@ def log_versions_libs():
 
     import sklearn #collection of machine learning algorithms
     print("scikit-learn version: {}". format(sklearn.__version__))
+
+def get_yahoo_api_data(TICKER, period="max", interval="1d"):
+    # df_webull, __ = get_df_webull_realTime(INTERVAL_WEBULL, TICKER, None)
+    df_yh = yf.download(tickers=TICKER, period=period, interval=interval, prepost=False)
+    # df_yh.index = df_yh.index.tz_convert(None)  # location zone adapt to current zone
+    df_yh.reset_index(inplace=True)
+    df_yh = df_yh.rename(columns={'Datetime': 'Date'})
+    df_yh = df_yh.drop(columns=['Adj Close'])
+    df_yh['Date'] = df_yh['Date'] + pd.Timedelta(hours=5)
+    df_yh['Date'] = df_yh['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    df_yh = df_yh.sort_values('Date', ascending=False).round(2)
+    df_yh = df_yh[df_yh['Date'] > "2014:01:01"]
+    df_yh['Date'] = pd.to_datetime(df_yh['Date'])
+    return df_yh

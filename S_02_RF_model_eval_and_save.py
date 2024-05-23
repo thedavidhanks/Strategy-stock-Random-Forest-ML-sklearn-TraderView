@@ -1,5 +1,5 @@
 import glob
-import pickle
+import sys, os
 
 import pandas as pd
 import re
@@ -57,8 +57,10 @@ for TICKER in stocks_list:
             dict_r['path_model'] = save_model_rf(rf_moo, TICKER, row, dict_r)
             # df_feature_importances = pd.DataFrame({'Columns': rf_model.feature_names_in_, 'Importance':  [x.round(4) for x in rf_model.feature_importances_]})
             dr_res = pd.concat([dr_res, pd.DataFrame({**dict_r}, index=[0])], ignore_index=True)
-        except Exception as ex:
-            print("ERROR   ", ex)
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print("Exception: ",exc_type, e, fname, exc_tb.tb_lineno)
     # df.rename(columns=lambda x: x +"_b", inplace=True)
     print("end")
 

@@ -3,30 +3,14 @@ import pandas as pd
 import datetime as dt
 import time
 import json
-import yfinance as yf
 from datetime import datetime
+from UtilsL import get_yahoo_api_data
 
 import _KEYS_DICT
 START_DATE = '2000-01-01T00:00:00Z'
 END_DATE =  datetime.today().strftime('%Y-%m-%dT%H:%M:%SZ')
 TARGET_TIME = '1Day'#'2024-02-23T23:59:59Z'
 INTERVAL_WEBULL = "m3"  # ""d1" #y1 => diario y5=> semanal  m3=> diario     d5 => 5 minutos     d1 => 1 minuto
-
-
-def get_yahoo_api_data(TICKER, period="max", interval="1d"):
-    # df_webull, __ = get_df_webull_realTime(INTERVAL_WEBULL, TICKER, None)
-    df_yh = yf.download(tickers=TICKER, period="max", interval="1d", prepos=False)
-    # df_yh.index = df_yh.index.tz_convert(None)  # location zone adapt to current zone
-    df_yh.reset_index(inplace=True)
-    df_yh = df_yh.rename(columns={'Datetime': 'Date'})
-    df_yh = df_yh.drop(columns=['Adj Close'])
-    df_yh['Date'] = df_yh['Date'] + pd.Timedelta(hours=5)
-    df_yh['Date'] = df_yh['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_yh = df_yh.sort_values('Date', ascending=False).round(2)
-    df_yh = df_yh[df_yh['Date'] > "2014:01:01"]
-    df_yh['Date'] = pd.to_datetime(df_yh['Date'])
-    return df_yh
-
 
 # Set your parameters
 # symbol = 'AAPL'  # Replace with the symbol you're interested in
